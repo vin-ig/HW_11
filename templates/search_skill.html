@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по навыкам</title>
+</head>
+<body>
+<h1>С навыком "{{skill}}" найдено кандидатов: {{amount}}</h1>
+{% for candidate in found_skills %}
+    {% for id, name in candidate.items() %}
+        <p><a href="/candidate/{{id}}" target="_blank">{{name}}</a></p>
+    {% endfor %}
+{% endfor %}
+</body>
+</html>
