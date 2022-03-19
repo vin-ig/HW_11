@@ -1,13 +1,13 @@
 import json
 
 
-def load_candidates(path):
+def load_candidates(path: str) -> list:
 	"""Загружает список кандидатов из json-файла"""
 	with open(path, encoding='utf-8') as file:
 		return json.load(file)
 
 
-def get_candidate_by_id(candidates, uid):
+def get_candidate_by_id(candidates: list, uid: int) -> tuple | None:
 	"""Ищет кандидата по ID"""
 	for candidate in candidates:
 		if uid == candidate.get('id'):
@@ -16,10 +16,10 @@ def get_candidate_by_id(candidates, uid):
 					candidate.get('picture'),\
 					candidate.get('skills')
 
-	return False  # Если кандидат не найден
+	return None  # Если кандидат не найден
 
 
-def get_candidate_by_name(candidates, name):
+def get_candidate_by_name(candidates: list, name: str) -> list | None:
 	"""Ищет кандидата по имени"""
 	result = []
 	for candidate in candidates:
@@ -29,18 +29,18 @@ def get_candidate_by_name(candidates, name):
 	if len(result) != 0:
 		return result
 	else:
-		return False
+		return None
 
 
-def get_candidate_by_skill(candidates, skill):
+def get_candidate_by_skill(candidates: list, skill: str) -> list | None:
 	"""Ищет кандидата по навыкам"""
 	result = []
 	for candidate in candidates:
 		skills = [elem.lower() for elem in candidate.get('skills').split(', ')]
 		if skill.lower() in skills:
-			result.append({candidate.get('id'): candidate.get('name')})
+			result.append({'id': candidate.get('id'), 'name': candidate.get('name')})
 	# Проверяем, найдены ли кандидаты
 	if len(result) != 0:
 		return result
 	else:
-		return False
+		return None

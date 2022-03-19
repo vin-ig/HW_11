@@ -7,9 +7,7 @@
 <body>
 <h1>С навыком "{{skill}}" найдено кандидатов: {{amount}}</h1>
 {% for candidate in found_skills %}
-    {% for id, name in candidate.items() %}
-        <p><a href="/candidate/{{id}}" target="_blank">{{name}}</a></p>
-    {% endfor %}
+    <p><a href="/candidate/{{candidate.id}}" target="_blank">{{candidate.name}}</a></p>
 {% endfor %}
 </body>
 </html>
