@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from utils import *
 
 app = Flask(__name__)
@@ -22,9 +22,10 @@ def candidate(uid):
     return render_template('candidate.html', name=name, position=position, picture=picture, skills=skills)
 
 
-@app.route('/search_name/<name>')
-def search_name(name):
+@app.route('/search_name')
+def search_name():
     """Поиск по имени"""
+    name = request.args.get('candidates_name')
     result = get_candidate_by_name(candidates, name)
     if result:
         return render_template('search_name.html', found_names=result, amount=len(result))

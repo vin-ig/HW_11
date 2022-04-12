@@ -5,6 +5,11 @@
     <title>Кандидаты</title>
 </head>
 <body>
+<h2>Поиск по имени</h2>
+<form action="/search_name">
+    <input type=text name="candidates_name" placeholder="Введите имя">
+</form>
+<hr>
 <h1>Все кандидаты</h1>
 {% for id, name in candidates.items() %}
     <p><a href="/candidate/{{id}}" target="_blank">{{name}}</a></p>
